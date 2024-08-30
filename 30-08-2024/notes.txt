@@ -1,0 +1,80 @@
+Here’s a summary and some explanations for the MongoDB operations you performed, along with the corrections for the errors you encountered:
+
+Summary of Operations:
+Updating Documents in new Collection:
+
+Updated subject to "datascience" for sub: "eng":
+javascript
+Copy code
+db.new.updateMany({ sub: "eng" }, { $set: { sub: "datascience" } })
+Added address "Chitkara University" to all documents:
+javascript
+Copy code
+db.new.updateMany({}, { $set: { address: "Chitkara University" } })
+Updating Specific Documents:
+
+Updated grade to "A" for document with name: "ofdge":
+javascript
+Copy code
+db.new.updateOne({ name: "ofdge" }, { $set: { grade: "A" } })
+Updated grade to "B" for document with name: "ankur":
+javascript
+Copy code
+db.new.updateOne({ name: "ankur" }, { $set: { grade: "B" } })
+Finding Documents:
+
+Find documents with age: 22 and marks: 90:
+javascript
+Copy code
+db.students.find({ age: 22, marks: 90 })
+Corrected queries:
+Find documents with age >= 18 and marks >= 80:
+javascript
+Copy code
+db.new.find({ age: { $gte: 18 }, marks: { $gte: 80 } })
+Find documents with grade: "A":
+javascript
+Copy code
+db.new.find({ grade: "A" })
+Find documents with age >= 30 or marks >= 80:
+javascript
+Copy code
+db.new.find({ $or: [{ age: { $gte: 30 } }, { marks: { $gte: 80 } }] })
+Explanation of Errors:
+Syntax Error with $gte:
+
+Incorrect:
+
+javascript
+Copy code
+db.new.find({ age: {$gte 18}, marks: {$gte 80}})
+Missing colon after $gte.
+
+Correct:
+
+javascript
+Copy code
+db.new.find({ age: { $gte: 18 }, marks: { $gte: 80 } })
+Incorrect find Method Name:
+
+Incorrect:
+javascript
+Copy code
+db.students.fnd({})
+Correct Method:
+javascript
+Copy code
+db.students.find({})
+Syntax Error in $or Query:
+
+Incorrect:
+javascript
+Copy code
+db.new.find({ $or: [{ age: { $gte: 30 }, marks: { $gte: 80 + } }] })
+Correct:
+javascript
+Copy code
+db.new.find({ $or: [{ age: { $gte: 30 } }, { marks: { $gte: 80 } }] })
+Notes:
+Use proper syntax: Ensure that all syntax errors are corrected to execute queries and updates successfully.
+Understand query operators: MongoDB uses specific operators like $gte, $or, etc., which need to be used correctly within queries.
